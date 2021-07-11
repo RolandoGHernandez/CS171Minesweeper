@@ -41,7 +41,7 @@ public:
     // YOUR CODE BEGINS
     // ======================================================================
 
-
+    vector<vector<int>> uncoverAdjacents( vector<vector<int>> &localBoard, int col, int row );
 
     // ======================================================================
     // YOUR CODE ENDS
