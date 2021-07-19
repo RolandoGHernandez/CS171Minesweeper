@@ -28,39 +28,60 @@
 #include <algorithm>
 
 #include <queue>
-#include <random>
 using namespace std;
 
 class MyAI : public Agent
 {
 private:
     struct Tile{
-        int X;
-        int Y;
+        int x = -1;
+        int y = -1;
+        int label = -1;
+        unsigned effectiveLabel = 10;
+        unsigned coveredNeighbors = 8;
+        bool inQueue = false;
+        bool isCovered = true;
+        bool isFlag = false;
+        bool isBomb = false;
+        // to sort tiles vector by their label
+        bool operator < (const Tile& other)
+        {
+            if (effectiveLabel == other.effectiveLabel)
+            {
+                return coveredNeighbors < other.coveredNeighbors;
+            }
+            else
+            {
+                return effectiveLabel < other.effectiveLabel;
+            }
+        }
+        
     };
 
-    default_random_engine generator;
-
-    vector<Tile> randTile;
-    vector<Tile> onesTile;
-    queue<Tile> uncoverQueue;
-    vector<vector<int>> localBoard;
-    unsigned numCoveredTiles;
-    unsigned numMines;
-    unsigned numOfOnes;
-    Tile prevUncover;
-    Tile origAgent;
+    bool debug = true;
 
     int rowDim;
     int colDim;
+    int agentX;
+    int agentY;
+
+    unsigned numCoveredTiles;
+    unsigned numMines;
+
+    vector<Tile*> tiles;
+    vector<Tile*> bombs;
+    vector<vector<Tile>> board;
+
 
 public:
     MyAI ( int _rowDimension, int _colDimension, int _totalMines, int _agentX, int _agentY );
     Action getAction ( int number ) override;
-    Action checkMine ( Tile );
-    void uncoverAdjacents(int col, int row );
-    void updateBoard(int num, Tile prevUncover);
-    void displayBoard ();
+    Action decision(int x, int y);
+    static bool tileSort(Tile* t1, Tile* t2);
+    void updateBoard(int x, int y, int number);
+    void displayBoard();
+    void displayBoardNeighbors();
+    void displayTilesQ();
    
 };
 #endif //MINE_SWEEPER_CPP_SHELL_MYAI_HPP

@@ -1,3 +1,4 @@
+set ff=unix
 #!/bin/bash
 
 rm -rf Problems
