@@ -139,7 +139,7 @@ Agent::Action MyAI::getAction( int number )
                 }
                 else
                 {
-                    //cout << "NO FUCKING L" << endl;
+                    continue;
                 }
             }            
         }
@@ -218,8 +218,8 @@ Agent::Action MyAI::getAction( int number )
             return {UNCOVER, origAgent.X, origAgent.Y - 1};
         }
 
-        // choose a new original agent to uncover all the neighbors of
-        // ignores 1 as original agent because it would uncover bomb
+        // Choose a new original agent to uncover all the neighbors of.
+        // Ignores 1 as original agent because it would uncover bomb.
         //
         //
         Tile temp;
@@ -247,30 +247,11 @@ Agent::Action MyAI::getAction( int number )
             return {UNCOVER, temp.X, temp.Y};
         }
     }
-    /*
-    else if (number == 1 && randTile.size() > 0)
-    {
-        cout << "HOLY SHIT" << endl;
-        Tile temp = randTile.back();
-        origAgent = temp;
-        randTile.pop_back();
-        prevUncover = {temp.X, temp.Y};
-        numCoveredTiles--;
-        return {UNCOVER, temp.X, temp.Y};
-    }
-    else if (number == 1 && randTile.size() == 0)
-    {
-        cout << "FUCKING STUFF" << endl;
-        return {LEAVE, -1, -1};
-    }
-    */
     else
     {
         //cout << "BLARHGHGHGHG" << endl;
         return {LEAVE, -1, -1};
     }
-    
-    
 }
 
 
