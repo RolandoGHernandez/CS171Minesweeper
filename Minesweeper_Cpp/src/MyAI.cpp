@@ -12,7 +12,7 @@ MyAI::MyAI ( int _rowDimension, int _colDimension, int _totalMines, int _agentX,
     //cout << "Total Mines: " << _totalMines << endl;
     //cout << "Agent X/Y: " << _agentX + 1 << "/" << _agentY + 1 << endl;
 
-    // construct local board representation
+    // Construct local board representation.
     for (int i = 0; i < _rowDimension; i++)
     {
         vector<int> col;
@@ -23,10 +23,10 @@ MyAI::MyAI ( int _rowDimension, int _colDimension, int _totalMines, int _agentX,
         localBoard.push_back(col);
     }
 
-    // uncover agent starting position
+    // Uncover agent starting position.
     localBoard[_agentX][_agentY] = 0;
 
-    // initialize variables
+    // Initialize variables.
     numCoveredTiles = _rowDimension * _colDimension - 1;
     numMines = _totalMines;
 
@@ -38,7 +38,7 @@ MyAI::MyAI ( int _rowDimension, int _colDimension, int _totalMines, int _agentX,
 
     rowDim = _rowDimension;
     colDim = _colDimension;
-    // change board test
+    // Change board test.
     //displayBoard();
 };
 
